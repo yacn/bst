@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument("dir", type=str, help="path to folder to generate")
 
-args = parse.parse_args()
+args = parser.parse_args()
 
 env = Environment(loader=FileSystemLoader(os.getcwd()))
 template = env.get_template("bst-page.j2")
