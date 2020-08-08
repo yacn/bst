@@ -2,6 +2,7 @@
 
 import argparse
 import os
+import os.path
 import sys
 
 from pprint import pprint 
@@ -9,6 +10,9 @@ from pprint import pprint
 import yaml
 
 from jinja2 import Environment, FileSystemLoader
+
+def dist_dir(dir_):
+    return os.path.join("dist", os.path.basename(dir_))
 
 parser = argparse.ArgumentParser()
 
@@ -23,19 +27,23 @@ if not os.path.exists(args.dir):
     print(f"No such path: {args.dir}")
     sys.exit(1)
 
-os.chdir(args.dir)
+#os.chdir(args.dir)
 
-if not os.path.exists("data.yml"):
+if not os.path.exists(os.path.join(args.dir, "data.yml")):
     print("Missing data.yml")
     sys.exit(1)
 
-with open("data.yml", "r") as f:
+with open(os.path.join(args.dir, "data.yml"), "r") as f:
     data = yaml.load(f)
 
-pprint(data)
+if not os.path.exists(dist_dir(args.dir):
+    os.mkdir(dist_dir(args.dir))
 
 rendered = template.render(**data)
-with open("index.html", "w") as f:
+with open(os.path.join(dist_dir(args.dir), "index.html"), "w") as f:
     f.write(rendered)
 
-print(f"Generated HTML in {args.dir}, switch to gh-pages branch and commit")
+print(f"Generated HTML in {dist_dir(args.dir)}")
+how_to_commit = """Add to gh-pages branch by running the following:
+    git subtree push --prefix dist origin gh-pages"""
+print(how_to_commit)
