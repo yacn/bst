@@ -27,8 +27,6 @@ if not os.path.exists(args.dir):
     print(f"No such path: {args.dir}")
     sys.exit(1)
 
-#os.chdir(args.dir)
-
 if not os.path.exists(os.path.join(args.dir, "data.yml")):
     print("Missing data.yml")
     sys.exit(1)
@@ -44,6 +42,8 @@ with open(os.path.join(dist_dir(args.dir), "index.html"), "w") as f:
     f.write(rendered)
 
 print(f"Generated HTML in {dist_dir(args.dir)}")
-how_to_commit = """Add to gh-pages branch by running the following:
+how_to_commit = f"""Add to gh-pages branch by running the following:
+    git add dist
+    git commit -m "generated {args.dir}"
     git subtree push --prefix dist origin gh-pages"""
 print(how_to_commit)
