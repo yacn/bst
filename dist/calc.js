@@ -12,6 +12,6 @@ for (var i=0; i < inputs.length; i++) {
   inputs[i].onchange = function() {
     var add = this.value * (this.checked ? 1 : -1);
     subtotal += add
-    total.innerHTML = applyPayPalFee(subtotal + shipping);
+    total.innerHTML = subtotal ? applyPayPalFee(subtotal + shipping) : 0;
   }
 }
