@@ -7,11 +7,19 @@
     <body>
         <section id="items">
             <label class="header">For Sale</label>
+            {% if image is not none -%}
+            <br><img src="{{ image }}"><br>
+            {%- endif %}
             <br><br>
             Shipping: $<div id="shipping" style="display:inline">{{ shipping }}</div>
             <ul>
             {% for item in items %}
-                <input value="{{ item.value }}" type="checkbox" class="cart">${{ item.value }} <label class="checkbox">{{ item.name }}</label><br>
+                <input value="{{ item.value }}" type="checkbox" class="cart">${{ item.value }}
+                {% if "image" is in item -%}
+                <a href="{{ item.image }}"><label class="checkbox">{{ item.name }}</label></a><br>
+                {%- else -%}
+                <label class="checkbox">{{ item.name }}</label><br>
+                {%- endif %}
             {% endfor %}
             </ul>
             <section id="bill">
