@@ -12,7 +12,7 @@ from jinja2 import Environment, FileSystemLoader
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument("dir", type=str, help="path to folder to generate", required=True)
+parser.add_argument("dir", type=str, help="path to folder to generate")
 
 args = parse.parse_args()
 
