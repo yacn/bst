@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>BST</title>
+    </head>
+    <body>
+        <section id="items">
+            <label class="header">For Sale</label>
+            <br><br>
+            Shipping: $<div id="shipping" style="display:inline">{{ shipping }}</div>
+            <ul>
+            {% for item in items %}
+                <input value="{{ item.value }}" type="checkbox" class="cart">${{ item.value }} <label class="checkbox">{{ item.name }}</label><br>
+            {% endfor %}
+            </ul>
+            <section id="bill">
+            Your total with PayPal fee (total*1.029 + 0.30) factored in is $<span id="total">0</span>
+            </section>
+        </section>
+    <script src="calc.js"></script>
+    </body>
+</html>
