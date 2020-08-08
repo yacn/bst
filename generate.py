@@ -36,7 +36,7 @@ if not os.path.exists(os.path.join(args.dir, "data.yml")):
 with open(os.path.join(args.dir, "data.yml"), "r") as f:
     data = yaml.load(f)
 
-if not os.path.exists(dist_dir(args.dir):
+if not os.path.exists(dist_dir(args.dir)):
     os.mkdir(dist_dir(args.dir))
 
 rendered = template.render(**data)
